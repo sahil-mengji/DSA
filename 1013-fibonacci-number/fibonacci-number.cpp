@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int fib(int n) {
+        if(n==0) return 0;
+        if(n==1 || n==2) return 1;
+        int a;
+        if(m.find(n)==m.end()){
+         a = fib(n-1) + fib(n-2);
+         m[n]=a;
+        }
+        else{
+            a = m[n];
+        }
+        return a ;
+    
+
+    }
+private:
+    unordered_map <int,int> m;
+
+
+
+};
