@@ -1,26 +1,18 @@
 class Solution {
 public:
-    int ans = INT_MIN;
-
-    void rec(vector<int>& nums, int index, int currMax, int currMin) {
-        if (index >= nums.size()) return;
-
-        int num = nums[index];
-
-        if (num == 0) {
-            ans = max(ans, 0);
-            rec(nums, index + 1, 1, 1);
-        } else {
-            int newMax = max({num, currMax * num, currMin * num});
-            int newMin = min({num, currMax * num, currMin * num});
-            ans = max(ans, newMax);
-            rec(nums, index + 1, newMax, newMin);
-        }
-    }
-
     int maxProduct(vector<int>& nums) {
-        ans = nums[0];
-        rec(nums, 1, nums[0], nums[0]); 
-        return ans;
+       int n=nums.size();
+       int maxi=INT_MIN,suf=1,pref=1;
+       for(int i=0;i<n;i++){
+        if(suf==0) suf=1;
+        if(pref==0) pref=1;
+
+        suf=suf*nums[i];
+        pref=pref*nums[n-i-1];
+
+        maxi=max(maxi,max(suf,pref));
+       }
+
+       return maxi;
     }
 };
