@@ -1,62 +1,33 @@
 class Solution {
 public:
     void setZeroes(vector<vector<int>>& matrix) {
-        int m = matrix.size();
-        int n = matrix[0].size();
-
-
-     
-
-        bool firstRowZero = false, firstColZero = false;
-
-      
-        for (int i = 0; i < m; i++) {
-            if (matrix[i][0] == 0) {
-                firstColZero = true;
+        
+        int n= matrix.size() ,m =matrix[0].size();
+        vector<int> rows(n,1), cols(m,1);
+        for(int i=0 ; i<n;i++) {
+            for(int j=0; j<m;j++) {
+                   if(matrix[i][j]==0){
+                    rows[i]=0;
+                    cols[j]=0;
+                   }
             }
         }
 
-        for (int j = 0; j < n; j++) {
-            if (matrix[0][j] == 0) {
-                firstRowZero = true;
-            }
+for(int k=0 ;k<n;k++){
+    if(rows[k]==0){
+        for(int j=0; j<m;j++){
+            matrix[k][j]=0;
         }
-
-        for (int i = 1; i < m; i++) {
-            for (int j = 1; j < n; j++) {
-                if (matrix[i][j] == 0) {
-                    matrix[i][0] = 0;
-                    matrix[0][j] = 0; 
-                }
-            }
+    }
+}
+for(int k=0 ;k<m;k++){
+    if(cols[k]==0){
+        for(int j=0; j<n;j++){
+            matrix[j][k]=0;
         }
-
-        for (int i = 1; i < m; i++) {
-            if (matrix[i][0] == 0) {
-                for (int j = 1; j < n; j++) {
-                    matrix[i][j] = 0;
-                }
-            }
-        }
-
-        for (int j = 1; j < n; j++) {
-            if (matrix[0][j] == 0) {
-                for (int i = 1; i < m; i++) {
-                    matrix[i][j] = 0;
-                }
-            }
-        }
-
-        if (firstRowZero) {
-            for (int j = 0; j < n; j++) {
-                matrix[0][j] = 0;
-            }
-        }
-
-        if (firstColZero) {
-            for (int i = 0; i < m; i++) {
-                matrix[i][0] = 0;
-            }
-        }
+    }
+}
+    
+        
     }
 };
