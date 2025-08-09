@@ -6,20 +6,19 @@ private:
             return;
         }
 
-      
+       gen(res, cur, ref, i + 1, n);
         cur.push_back(ref[i]);
         gen(res, cur, ref, i + 1, n);
 
 
-        cur.pop_back(); 
-        gen(res, cur, ref, i + 1, n);
+       
     }
 
 public:
     vector<vector<int>> subsets(vector<int>& nums) {
         vector<vector<int>> res;
         vector<int> cur;
-        
+
         int n = nums.size();
         gen(res, cur, nums, 0, n);
         return res;
